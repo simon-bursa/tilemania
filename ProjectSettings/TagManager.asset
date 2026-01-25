@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Caves
   - Coin
+  - Enemy
+  - Door
+  - Ladder
   layers:
   - Default
   - TransparentFX

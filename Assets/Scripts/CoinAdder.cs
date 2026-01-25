@@ -3,8 +3,14 @@ using TMPro;
 
 public class CoinAdder : MonoBehaviour
 {
-    [SerializeField] private int coinBalance = 0;
+    private static int coinBalance = 0;
+
     [SerializeField] private TextMeshProUGUI coinText;
+
+    void Awake()
+    {
+        coinBalance = 0;
+    }
 
     void Start()
     {
@@ -15,7 +21,7 @@ public class CoinAdder : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            coinBalance++;
+            coinBalance++; 
             UpdateUI();
             Destroy(gameObject);
         }
@@ -23,6 +29,11 @@ public class CoinAdder : MonoBehaviour
 
     void UpdateUI()
     {
+        if (coinText == null)
+        {
+            coinText = GameObject.Find("CoinTextNameInHierarchy")?.GetComponent<TextMeshProUGUI>();
+        }
+
         if (coinText != null)
         {
             coinText.text = "Coins: " + coinBalance;
